@@ -1,9 +1,14 @@
-var player1,player2,rounds,actualPlayer1,actualPlayer2,counter,prompter;
+var player1,player2,rounds,actualPlayer1,actualPlayer2,counter,prompter,DrawScore;
 var OneScore,TwoScore;
 OneScore = 0;
 TwoScore = 0;
+DrawScore = 0;
 counter = 0;
   rounds = parseInt(prompt("Enter number of rounds: "));
+  player1Name = prompt("Enter Player 1 name: ");
+  player2Name = prompt("Enter Player 2 name: ");
+  document.querySelector("p.pno1").innerHTML = player1Name;
+  document.querySelector("p.pno2").innerHTML = player2Name;
 //Functions
 function player1_wins()
 {
@@ -70,6 +75,7 @@ function play()
     if(player1 == player2)
     {
       document.querySelector("h1").innerHTML = "Draw";
+      DrawScore+=1;
     }
     else if(actualPlayer1==="Stone" && actualPlayer2==="Scissor")
     {
@@ -101,8 +107,23 @@ function play()
     {
       document.querySelector("button.round-btn").classList.add("Invisible");
       document.querySelector("div.score").classList.remove("Invisible");
+      document.querySelector("span.pno1").innerHTML = player1Name;
+      document.querySelector("span.pno2").innerHTML = player2Name;
+      document.getElementById('drawscore').innerHTML = DrawScore;
       document.getElementById("play1").innerHTML = OneScore;
       document.getElementById("play2").innerHTML = TwoScore;
+      if(OneScore == TwoScore)
+      {
+        document.querySelector("h1").innerHTML = "Final Result : Draw";
+      }
+      else if(OneScore>TwoScore)
+      {
+        document.querySelector("h1").innerHTML = "Final Result : "+player1Name+" wins!";
+      }
+      else
+      {
+        document.querySelector("h1").innerHTML = "Final Result : "+player2Name+" wins!";
+      }
     }
 }
 
